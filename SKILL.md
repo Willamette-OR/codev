@@ -16,9 +16,9 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, Tier A gates, B1, the
+> **Status: under construction.** The invariants, Tier A gates, B1, B2, the
 > communication standard, and the Git & GitHub routine below are settled. The
-> rest of Tier B (B2–B6) and all of Tier C are still being designed with the
+> rest of Tier B (B3–B6) and all of Tier C are still being designed with the
 > user — do not invent them in the meantime.
 
 ## Invariants — privacy & security
@@ -126,8 +126,78 @@ B1 re-fires on each new substantive request and whenever intent visibly shifts
 mid-project. It does not re-fire when resuming work whose intent is already
 established and unchanged.
 
-> **Pending:** B2 (orientation), B3 (approach fork), B4 (plan), B5 (increment),
-> and B6 (landing) are still being designed — see issue #1. Do not invent them.
+### B2 · Orientation — understand the ground before building on it
+
+B2 answers one question: **what already exists that bears on this?** It runs
+after intent is confirmed and before anything gets written. There are two
+branches, and both can apply to the same task.
+
+#### Existing code — orient in it
+
+After exploring, before editing, lay out the mental model and let the user
+correct it:
+
+- How the relevant part works **today**.
+- **Where the change belongs**, and why there rather than somewhere else.
+- **What else touches it** — what could break, what depends on this.
+- **Anything surprising** found along the way.
+
+The point is that a wrong mental model is cheap to fix at this moment and
+expensive to fix once code has been written on top of it. Getting corrected here
+is the gate working, not a failure.
+
+#### Something new — check for prior art first
+
+Before building something new, spend a **proportionate** amount of effort finding
+out whether it already exists, free and reusable.
+
+Scale the effort to what building it yourself would cost — not to thoroughness
+for its own sake:
+
+- **A small utility**, an hour or two of work → one quick search, or skip it.
+- **A substantial component**, days of work → a few targeted searches.
+- **A whole system or product**, weeks of work → a real survey; compare several
+  candidates properly.
+
+Search the **problem**, not the solution already imagined. Searching for a
+self-invented name for the thing finds nothing and proves nothing.
+
+Report one of three outcomes:
+
+1. **Something already does this.** Name it, what it does, and what adopting it
+   would actually involve.
+2. **Something close exists** — worth forking, extending, or adapting. Say what's
+   missing and roughly what closing that gap takes. *This is the outcome most
+   often missed*, because a partial match is easy to dismiss and is frequently
+   the best option available.
+3. **Nothing suitable.** Say so, with a brief note on what was checked — so it's
+   visible that the step happened rather than being quietly skipped.
+
+Before recommending any candidate, verify:
+
+- **Free, and licensed for the intended use** — especially for forking. A license
+  that forbids the plan makes the option imaginary.
+- **Alive.** Recent commits, issues getting answered. An abandoned project is a
+  liability, not a shortcut.
+- **Where the data goes.** Anything that uploads or phones home collides with
+  invariant 1. For work touching financial or personal data, local-only operation
+  is a requirement, not a preference.
+
+Resist bias in **both** directions: don't oversell a rough match to avoid the
+work of building, and don't dismiss real options because building from scratch is
+more interesting. State the honest fit, including the parts that don't fit.
+
+Then present the findings and let the user decide — build versus reuse is their
+call, not an implementation detail. When there are viable candidates this becomes
+a B3 approach fork, so describe the options by what they'd mean in practice, not
+by their technology.
+
+**Scope:** this fires whenever something substantially new is being built — not
+only in an empty directory. A major new capability inside an existing project
+deserves the same check.
+
+> **Pending:** B3 (approach fork), B4 (plan), B5 (increment), and B6 (landing)
+> are still being designed — see issue #1. Do not invent them.
 
 ## Communicating at gates
 
