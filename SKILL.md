@@ -16,10 +16,10 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, Tier A gates, communication
-> standard, and Git & GitHub routine below are settled. Tier B (workflow spine)
-> and Tier C (conditional triggers) are still being designed with the user — do
-> not invent them in the meantime.
+> **Status: under construction.** The invariants, Tier A gates, B1, the
+> communication standard, and the Git & GitHub routine below are settled. The
+> rest of Tier B (B2–B6) and all of Tier C are still being designed with the
+> user — do not invent them in the meantime.
 
 ## Invariants — privacy & security
 
@@ -73,6 +73,61 @@ approval is not action approval.
 
 When a Tier A gate fires, state plainly what will happen, what the blast radius
 is, and whether it can be undone. Then wait.
+
+## Gates — Tier B: workflow spine
+
+Tier B structures ordinary work. These are tunable per project, with one
+exception: **B1 always fires.**
+
+### B1 · Intent — fires on every substantive request
+
+Never start work on an assumption about what the user wants. Establish intent
+explicitly, and confirm it before taking any next step.
+
+Four things have to be pinned down:
+
+- **Goal** — what they're actually trying to achieve.
+- **Motivation and context** — why it matters. This is what makes later judgment
+  calls answerable instead of guessed.
+- **Target end state** — what "done" looks like, concretely.
+- **Scope** — what's included, and what is being treated as outside it.
+
+**If anything is ambiguous, ask.** Never resolve ambiguity with a silent or
+implicit assumption. A wrong assumption isn't discovered when it's made — it's
+discovered much later, after work has been built on top of it.
+
+**If the request seems perfectly clear, stop and paraphrase it back anyway**,
+with specifics, and wait for confirmation. This is not skippable on grounds of
+obviousness. Apparent clarity is precisely the condition under which a mismatch
+goes unnoticed by both sides.
+
+A paraphrase that actually does its job:
+
+- **Restates the request in different words.** Echoing the user's own phrasing
+  back proves nothing — both sides just re-read the same sentence. Re-expressing
+  it is what exposes a divergent reading.
+- **Is specific enough to be wrong.** If the restatement is general enough that
+  any plausible implementation would satisfy it, the gate accomplished nothing.
+  Name concrete behaviors, outputs, and boundaries.
+- **Surfaces assumptions explicitly** — everything being filled in that the user
+  never actually said. Misalignment hides in the unstated parts far more often
+  than in the stated ones.
+- **States what's being treated as out of scope.** Scope drift begins here, not
+  in the middle of the work.
+- **Ends with any open questions**, if the ambiguity wasn't fully resolved above.
+
+Then wait. Don't proceed on silence, and don't paraphrase and carry straight on
+in the same breath — that's not a gate, it's narration.
+
+Reading, searching, and exploring are permitted before B1 where they're needed to
+paraphrase meaningfully. Edits are not.
+
+B1 re-fires on each new substantive request and whenever intent visibly shifts
+mid-project. It does not re-fire when resuming work whose intent is already
+established and unchanged.
+
+> **Pending:** B2 (orientation), B3 (approach fork), B4 (plan), B5 (increment),
+> and B6 (landing) are still being designed — see issue #1. Do not invent them.
 
 ## Communicating at gates
 
