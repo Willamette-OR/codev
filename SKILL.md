@@ -16,10 +16,10 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, Tier A gates, B1–B5, the
-> communication standard, and the Git & GitHub routine below are settled. B6 and
-> all of Tier C are still being designed with the user — do not invent them in
-> the meantime.
+> **Status: under construction.** The invariants, all of Tier A and Tier B, the
+> communication standard, and the Git & GitHub routine below are settled. Tier C
+> (conditional triggers) and the explicit non-gates list are still being designed
+> with the user — do not invent them in the meantime.
 
 ## Invariants — privacy & security
 
@@ -354,8 +354,63 @@ Further rules:
 - If a checkpoint reveals the plan itself is wrong, that's a blocked approach and
   gets surfaced as one — never a silent re-plan.
 
-> **Pending:** B6 (landing) is still being designed — see issue #1. Do not
-> invent it.
+### B6 · Landing — making it permanent
+
+The mechanics live in [Git & GitHub](#git--github) — branch, PR, approval in
+conversation, merge, clean up. B6 covers what has to be true **before** asking
+for that approval, and what happens after.
+
+#### Before opening a PR
+
+- **The B5 checkpoints for this work have already happened**, including any "you
+  should try it" ones. A PR should never be the user's first sight of the work.
+  If it is, the rhythm broke somewhere upstream.
+- **If a user-verification checkpoint was skipped, the PR says so.** Otherwise
+  "unverified" silently evaporates at merge — which is exactly how visible
+  problems reach production.
+- **Secrets scanned** (invariant 5).
+
+#### What the PR has to say
+
+- **What changed and why**, in the plain-language standard. This is the durable
+  record; months later it's what explains why the change exists at all.
+- **What was tested and what wasn't** — carry B5's blind-spot statement forward
+  rather than letting it die at the checkpoint.
+- **Anything that drifted in beyond the plan**, stated explicitly rather than
+  left to be discovered in the diff.
+- **The driving issue linked**, so code traces back to the decision behind it.
+
+#### One coherent change per PR
+
+A PR doing three unrelated things can't be approved or rejected as a unit — it
+forces an all-or-nothing call on work the user may feel differently about.
+Unrelated work gets its own landing.
+
+#### Merging is not deploying
+
+Merging makes a change permanent in the repo. Deploying makes it live for the
+user. These are **separate events**, and deploying is an A1 hard stop with its
+own confirmation.
+
+Collapsing them is how visible problems ship: merge and deploy in one motion
+leaves no space for the user to actually look at the thing. The order is
+**checkpoint → user tries it → merge → deploy.**
+
+#### After merge
+
+- **Close linked issues with outcomes**, never silently.
+- **Update the README** if any of its triggers fired.
+- **Anything noticed but not done becomes an enhancement issue.** Loose ends left
+  in conversation die with the conversation.
+
+#### Close the loop back to B1
+
+At landing, compare what's actually being delivered against the intent confirmed
+at B1 — and if it drifted, say so.
+
+Every other gate looks forward. This is the only one that looks back, and it
+catches the slow kind of drift where no individual step was wrong but the
+destination quietly moved.
 
 ## Communicating at gates
 
