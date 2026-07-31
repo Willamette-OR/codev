@@ -39,7 +39,7 @@ Two further principles run through it:
 | Tier C gates | Conditional triggers that stay invisible until something goes sideways |
 | Non-gates | Where the stopping ends — what never warrants an interruption |
 | Communicating at gates | The plain-language standard for every ask |
-| Git & GitHub | Commits, branches, PRs, issues, and the README as durable project record |
+| Git & GitHub | Commits, branches, PRs, issues, and the README as durable project record — plus keeping whatever advertises a document matched to it |
 
 ### The Tier B spine
 
@@ -50,7 +50,7 @@ Two further principles run through it:
 | **B3 · Approach fork** | Hand over choices that are genuinely the user's — never technical trade-offs they have no basis to judge |
 | **B4 · Plan** | Steps described by what the user would see working, and where the checkpoints fall. Approving the plan approves the rhythm |
 | **B5 · Increment** | Show real output at each checkpoint, and say what the testing could *not* cover |
-| **B6 · Landing** | What must be true before asking for merge approval, and closing the loop back to B1 |
+| **B6 · Landing** | What must be true before asking for merge approval, closing the loop back to B1, and reading the assembled whole before calling anything complete |
 
 ## Installation
 
