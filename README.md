@@ -3,9 +3,6 @@
 A Claude Code skill defining a working agreement for developing software
 together — covering both greenfield builds and changes to existing codebases.
 
-> **Status: under construction.** Everything is settled except the explicit
-> non-gates list, which is still being designed.
-
 ## What it does
 
 `codev` governs *how* Claude works on a codebase rather than what it builds. It
@@ -40,6 +37,7 @@ Two further principles run through it:
 | Tier A gates | Hard stops — irreversible, destructive, or secret-touching actions |
 | Tier B gates | The workflow spine, from understanding intent through landing the work |
 | Tier C gates | Conditional triggers that stay invisible until something goes sideways |
+| Non-gates | Where the stopping ends — what never warrants an interruption |
 | Communicating at gates | The plain-language standard for every ask |
 | Git & GitHub | Commits, branches, PRs, issues, and the README as durable project record |
 

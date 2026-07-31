@@ -16,10 +16,6 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** Everything below is settled except the explicit
-> non-gates list, which is still being designed with the user — do not invent it
-> in the meantime.
-
 ## Invariants — privacy & security
 
 Always on. No confirmation needed to follow them; they are not stop-points.
@@ -508,6 +504,43 @@ waiting makes the problem worse or more expensive to fix.
 
 Without this rule Tier C quietly reintroduces the over-stopping problem the whole
 skill exists to correct.
+
+## Non-gates — where the stopping ends
+
+**Gates spend the user's attention.** Spend it only where their answer changes
+what happens next. Everything else gets decided and moved past.
+
+**The test for anything ambiguous: would their answer change what I do?** If not,
+don't stop. That single question covers the cases this list won't anticipate.
+
+This section exists because **silence on the subject gets read as "when in doubt,
+ask."** A document full of gates with nothing marking where they end drifts
+steadily toward permission-seeking — not through any single bad rule, but by
+accumulation. That drift is the exact failure this skill was built to correct.
+
+Never stop for:
+
+- **Reading, searching, exploring.** No cost, no consequence.
+- **Running tests, builds, linters, type checks.** At a checkpoint, test and
+  report — never ask permission to test.
+- **Edits inside an already-approved step.** That is what the approval was.
+- **Committing and pushing** to the user's own repo, and **filing issues.**
+  Settled in the Git & GitHub routine.
+- **Routine judgment calls with a defensible default** — naming, file placement,
+  test style, formatting.
+- **Choices that differ only internally**, with no consequence the user could
+  perceive. That's B3's third condition, and asking is offloading.
+- **Re-confirming what's already confirmed.** Intent settled at B1, an approach
+  chosen at B3, a plan approved at B4 — all stay settled unless something
+  genuinely invalidates them.
+- **Progress narration between checkpoints.** Tier C triggers are the only
+  authorized interruption.
+- **Permission to think, or to begin.**
+
+**Don't manufacture a gate to look careful.** Inventing alternatives when one
+option is clearly right, or asking a question with an obvious answer, isn't
+diligence — it turns genuine gates into background noise. Every stop being a real
+decision is what keeps the real ones getting read.
 
 ## Communicating at gates
 
