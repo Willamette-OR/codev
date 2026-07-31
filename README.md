@@ -3,9 +3,10 @@
 A Claude Code skill defining a working agreement for developing software
 together — covering both greenfield builds and changes to existing codebases.
 
-> **Status: under construction.** The invariants, Tier A gates, communication
-> standard, and Git & GitHub routine are settled. Tier B (workflow spine) and
-> Tier C (conditional triggers) are still being designed.
+> **Status: under construction.** The invariants, Tier A gates, Tier B gates,
+> communication standard, and Git & GitHub routine are settled. Tier C
+> (conditional triggers) and the explicit non-gates list are still being
+> designed.
 
 ## What it does
 
@@ -39,8 +40,20 @@ Two further principles run through it:
 | --- | --- |
 | Invariants | Privacy and security constraints that are always in force |
 | Tier A gates | Hard stops — irreversible, destructive, or secret-touching actions |
+| Tier B gates | The workflow spine, from understanding intent through landing the work |
 | Communicating at gates | The plain-language standard for every ask |
 | Git & GitHub | Commits, branches, PRs, issues, and the README as durable project record |
+
+### The Tier B spine
+
+| Gate | What it does |
+| --- | --- |
+| **B1 · Intent** | Confirm goal, motivation, end state, and scope — always, even when the request seems obvious |
+| **B2 · Orientation** | Lay out the mental model of existing code; for anything new, check whether a free tool already solves it or is worth forking |
+| **B3 · Approach fork** | Hand over choices that are genuinely the user's — never technical trade-offs they have no basis to judge |
+| **B4 · Plan** | Steps described by what the user would see working, and where the checkpoints fall. Approving the plan approves the rhythm |
+| **B5 · Increment** | Show real output at each checkpoint, and say what the testing could *not* cover |
+| **B6 · Landing** | What must be true before asking for merge approval, and closing the loop back to B1 |
 
 ## Installation
 
