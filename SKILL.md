@@ -16,10 +16,10 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, Tier A gates, B1–B3, the
-> communication standard, and the Git & GitHub routine below are settled. The
-> rest of Tier B (B4–B6) and all of Tier C are still being designed with the
-> user — do not invent them in the meantime.
+> **Status: under construction.** The invariants, Tier A gates, B1–B5, the
+> communication standard, and the Git & GitHub routine below are settled. B6 and
+> all of Tier C are still being designed with the user — do not invent them in
+> the meantime.
 
 ## Invariants — privacy & security
 
@@ -254,8 +254,108 @@ Every B3 outcome becomes a `decision` issue on GitHub in the context → options
 decision → why → date shape. B3 is the primary producer of those issues; it's
 where the audit trail actually gets written.
 
-> **Pending:** B4 (plan), B5 (increment), and B6 (landing) are still being
-> designed — see issue #1. Do not invent them.
+### B4 · Plan — and the checkpoint rhythm it sets
+
+B4 and B5 are one design. How granular the plan is determines how often the
+increment checkpoint fires, so the plan is where the rhythm gets set — and
+**approving the plan approves the rhythm.** This is the fix for the predecessor
+skill, which imposed a fixed rhythm the user could only escape by abandoning it.
+
+**Scale the plan to the work.** A twenty-minute change gets a two-line plan, not
+a document. Producing formal planning machinery for small work is precisely the
+ceremony this skill exists to avoid.
+
+A plan contains:
+
+- **Steps described by what the user would see working** — "you can add a holding
+  and see it in the list," not "implement the data layer." Internal tasks aren't
+  something the user can evaluate.
+- **Where the checkpoints fall, what kind each one is, and why there.**
+- **Where the uncertainty is** — what might not work, and the fallback if it
+  doesn't.
+- **What is explicitly not included**, so scope drift has a baseline to be
+  measured against.
+
+No per-step test plan. Each checkpoint instead states **what the user will be
+shown, or asked to try**. That's more useful to them and far less machinery than
+the formal per-milestone test plans that made the predecessor heavy.
+
+#### Checkpoint spacing
+
+Spacing is set by **how much work would be wasted if things are off course** —
+not by counting tasks. Tighten when the territory is unfamiliar, the requirements
+are fuzzy, or a wrong turn means throwing a lot away. Loosen for routine,
+predictable, low-risk work.
+
+Default to **sparse**; over-stopping is the failure this skill exists to correct.
+But sparseness applies to only one of the two checkpoint kinds — see below.
+
+#### Two kinds of checkpoint
+
+Every checkpoint is marked as one or the other, and the user sees the marking
+when they approve the plan.
+
+- **"I'll show you"** — Claude ran it, here's the real output. Fine for internal
+  logic, data correctness, anything with an objectively checkable answer.
+- **"You should try it"** — Claude cannot validate this from here. Needs the
+  user's own eyes and hands.
+
+**User-verification checkpoints are never economized away.** Sparse pacing
+applies to the first kind only. The second kind is where silent failures live.
+
+A checkpoint requires the user to try it when the work involves:
+
+- **A visible surface** — UI, layout, charts, formatting, labels. Claude cannot
+  see their screen.
+- **Domain judgment only they have** — whether a number means what they'd expect
+  it to mean against their real data.
+- **A subjective sense of "works"** — readable, useful, sensible defaults.
+- **Anything about to be deployed that changes what they see.** This one is a
+  standing rule, not a per-plan choice.
+
+### B5 · Increment — the checkpoint itself
+
+Show **real output**: what actually happened, actual results, actual screenshots.
+Never "this should work." Then the user decides — continue, fix, or back up.
+
+**State what the testing did not cover.** This is the load-bearing rule of the
+whole gate. Not "tests pass," but "tests confirm the income calculation is right;
+they can't tell you whether the chart is readable or the labels make sense —
+that needs your eyes."
+
+The reason it matters: **Claude's tests can only fail in ways Claude
+anticipated.** They encode Claude's own assumptions about what correct means, so
+they share its blind spots exactly. A passing suite proves that model of
+correctness is self-consistent — not that it matches reality. Naming the blind
+spot is what lets the user make a real decision instead of reading green as good.
+
+**Never let approval stand in for verification.** If a checkpoint needs the
+user's hands and they approve on the strength of a report instead, say so plainly
+rather than quietly banking it, and record that area as unverified. Skipping is
+their call — but it has to be a choice, not an accident of a report sounding more
+conclusive than it was.
+
+**Make testing easy or it won't happen.** Never "please test it." Give the exact
+command, the exact page or file, and specifically what to look at.
+
+Further rules:
+
+- **Don't ask permission to test — test, then report.** "Shall I run the tests
+  now?" is a question with one sensible answer and pure friction. A checkpoint is
+  a report the user acts on, not a request to proceed.
+- **Between checkpoints, keep working without narrating.** No progress updates,
+  no "shall I continue?" That uninterrupted stretch is the entire point of
+  setting a rhythm up front.
+- **A checkpoint that surfaces a failure is the gate working.** Show failures
+  plainly; never soften one into sounding like success.
+- **Stop early if the work turns out far bigger than planned.** Don't push on to
+  the scheduled checkpoint — that's scope drift, and waiting means telling the
+  user much too late.
+- If a checkpoint reveals the plan itself is wrong, that's a blocked approach and
+  gets surfaced as one — never a silent re-plan.
+
+> **Pending:** B6 (landing) is still being designed — see issue #1. Do not
+> invent it.
 
 ## Communicating at gates
 
