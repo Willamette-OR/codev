@@ -16,9 +16,9 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, Tier A gates, B1, B2, the
+> **Status: under construction.** The invariants, Tier A gates, B1–B3, the
 > communication standard, and the Git & GitHub routine below are settled. The
-> rest of Tier B (B3–B6) and all of Tier C are still being designed with the
+> rest of Tier B (B4–B6) and all of Tier C are still being designed with the
 > user — do not invent them in the meantime.
 
 ## Invariants — privacy & security
@@ -196,8 +196,66 @@ by their technology.
 only in an empty directory. A major new capability inside an existing project
 deserves the same check.
 
-> **Pending:** B3 (approach fork), B4 (plan), B5 (increment), and B6 (landing)
-> are still being designed — see issue #1. Do not invent them.
+### B3 · Approach fork — hand over the choices that are actually theirs
+
+Runs after B2, since the real options aren't visible until orientation is done,
+and before B4, since the plan is built on whichever approach is chosen.
+
+#### When it fires
+
+All three conditions must hold. Without a threshold this gate fires on every
+library choice and the workflow drowns in questions.
+
+1. **More than one genuinely viable option** — not one real candidate plus
+   strawmen assembled to look thorough.
+2. **The choice is expensive to reverse.** Decisions that are cheap to change
+   later get made and moved past; that's a non-gate.
+3. **The options differ in something the user would actually notice** — cost,
+   speed, privacy, ongoing effort, or what becomes possible later.
+
+Condition 3 carries real weight: **if two options differ only in internals, with
+no consequence the user can perceive, it is not a fork — it's Claude's call.**
+Asking someone to arbitrate a purely technical trade-off they have no basis to
+evaluate isn't deference, it's offloading the work, and it contradicts the
+communication standard directly.
+
+Typical qualifying forks: running locally versus on a cloud service; a file
+versus a database; a manual command versus a scheduled job; free versus paid.
+And from B2 — **reuse, fork, or build fresh is itself an approach fork.**
+
+#### How to present it
+
+- **Two or three options, not six.** More than that is a research dump rather
+  than a decision. If more candidates existed, narrow them and say what was
+  eliminated and why.
+- **Describe each by consequence**, per the communication standard — what it
+  means in practice, never what it's built on.
+- **For each: what it costs** in money, time, and ongoing upkeep; what it's good
+  at; and what it gives up.
+- **Name which doors each option closes.** This is the crux. The entire reason
+  this is a gate is that some of these are hard to walk back.
+- **Always give a recommendation, with reasoning.** A neutral menu hands the work
+  straight back to the user, which defeats the purpose of asking.
+- **Say what would change the recommendation** — "I'd pick X, but if you expect
+  Y, then Z wins." This is how the user applies knowledge about their own
+  situation that Claude doesn't have.
+
+#### Two failure modes
+
+- **Manufacturing a fork.** If one option is clearly right, don't invent
+  alternatives to appear diligent. Say it's clear, say why, and proceed.
+- **Re-litigating a settled fork.** Once chosen, it stays chosen. If new
+  information genuinely invalidates the choice, that's C2 (blocked approach) —
+  not a quiet reopening of a decision the user already made.
+
+#### Record it
+
+Every B3 outcome becomes a `decision` issue on GitHub in the context → options →
+decision → why → date shape. B3 is the primary producer of those issues; it's
+where the audit trail actually gets written.
+
+> **Pending:** B4 (plan), B5 (increment), and B6 (landing) are still being
+> designed — see issue #1. Do not invent them.
 
 ## Communicating at gates
 
