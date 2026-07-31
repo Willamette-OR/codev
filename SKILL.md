@@ -16,10 +16,9 @@ keeping them distinct is the point:
 Writing an invariant as a gate turns it into permission-seeking and it gets
 ignored. Writing a gate as an invariant means it silently never fires.
 
-> **Status: under construction.** The invariants, all of Tier A and Tier B, the
-> communication standard, and the Git & GitHub routine below are settled. Tier C
-> (conditional triggers) and the explicit non-gates list are still being designed
-> with the user — do not invent them in the meantime.
+> **Status: under construction.** Everything below is settled except the explicit
+> non-gates list, which is still being designed with the user — do not invent it
+> in the meantime.
 
 ## Invariants — privacy & security
 
@@ -411,6 +410,104 @@ at B1 — and if it drifted, say so.
 Every other gate looks forward. This is the only one that looks back, and it
 catches the slow kind of drift where no individual step was wrong but the
 destination quietly moved.
+
+## Gates — Tier C: conditional triggers
+
+Tier C stays invisible until something fires it. Every trigger here has an
+**observable** firing condition, deliberately. The predecessor skill carried
+rules like "watch for scope creep" — true, unactionable, and never once fired,
+because there was no moment at which they became noticeable. A rule with no
+trigger is decoration.
+
+### C1 · Scope drift
+
+**Fires when** about to touch a file or area the plan didn't mention, when one
+planned step is turning into several, or on catching the "while I'm here"
+instinct — the single most common source.
+
+**The test:** would this have been in the plan if it had been thought of at B4?
+If yes, and it isn't there, that's drift.
+
+**Then:** name what's growing and how much, and offer the options — do it now
+with revised scope, file it as an issue and continue, or drop it.
+
+### C2 · Blocked approach
+
+**Fires after two genuinely different failed attempts** at the same thing. A
+count rather than a judgment call, because a count actually fires. Also fires
+when a fix would require changing something the chosen approach assumed was
+fixed.
+
+**Then:** report what was tried, what failed and why, what that implies, and the
+fallback recorded in B4's uncertainty section.
+
+What this prevents is **silently switching approach.** The user chose it at B3,
+so changing it is theirs to decide. The third attempt is exactly where a quiet
+redesign would otherwise happen.
+
+> The number two is a **starting value**, not a finding. Tune it against real
+> use.
+
+### C3 · Contract change
+
+**Fires when** changing anything read from outside the immediate task: a function
+signature used elsewhere, a data or file format, a config shape, or a default
+that existing data depends on.
+
+**The test:** would something outside this change break, or need to change too?
+The sharpest version: **does data that already exists still load afterward?**
+
+**Then:** state what breaks, what has to change alongside it, and whether
+existing data survives.
+
+### C4 · New dependency
+
+**Fires when** installing or importing anything not already in the project.
+
+**Then:** what it's for, whether it's actually maintained, its license, **where
+its data goes** (invariant 1), and an honest estimate of whether the same thing
+could be done directly in a modest amount of code.
+
+Distinct from B2, which asks whether a tool already exists for the whole job.
+C4 is the mid-build reach for a library.
+
+### C5 · Surprise finding
+
+**Fires when** noticing something wrong while doing something else — a bug, a
+security problem, a data-loss risk.
+
+**Report it; don't fix it.** Fixing is scope drift, and the user may know
+perfectly well why it's that way.
+
+**Graduated, so it doesn't derail everything:** if it risks data, money,
+security, or the correctness of what's being built right now, say so
+immediately. Otherwise file an issue, mention it briefly, and carry on.
+
+### C6 · Yours to decide
+
+**Fires when** a question's answer depends on the user's preference or context
+rather than on anything discoverable in the code.
+
+**The guard**, because this one could easily become an excuse to over-ask: is
+there a defensible default? Almost always yes — take it and say so. Stop only
+when there is genuinely no basis to choose **and** the choice matters.
+
+Distinct from B3, which is a planned fork between real alternatives. C6 is a
+small unplanned question arising mid-work.
+
+### Interrupting versus batching
+
+**Tier C triggers are the authorized interruptions.** B5 says not to narrate
+between checkpoints; this is the stated exception. Without saying so, the two
+rules contradict each other and Tier C is the one that loses.
+
+**Batch the non-urgent ones.** When several minor triggers fire, they ride along
+to the next checkpoint rather than interrupting repeatedly. Interrupt
+immediately only when the trigger changes what should happen next, or when
+waiting makes the problem worse or more expensive to fix.
+
+Without this rule Tier C quietly reintroduces the over-stopping problem the whole
+skill exists to correct.
 
 ## Communicating at gates
 
