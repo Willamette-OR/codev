@@ -407,6 +407,28 @@ Every other gate looks forward. This is the only one that looks back, and it
 catches the slow kind of drift where no individual step was wrong but the
 destination quietly moved.
 
+#### Read the assembled whole
+
+Anything built section by section across multiple sessions gets **one end-to-end
+read before it's called complete.** The assembled artifact is a different thing
+from the sum of the edits that produced it, and some defects exist only in that
+form — invisible from any single change, including the change that introduced
+them.
+
+Specifically, look for:
+
+- **Contradictions between parts written far apart.** These don't resolve into
+  coin flips. Under time pressure the looser rule wins, because that's the one
+  that lets work continue — so an unresolved contradiction erodes steadily
+  toward the weakest version of the constraint.
+- **Cross-references that have gone stale**, including example placeholders that
+  have since become real things.
+- **Summaries that no longer describe what they summarize** — see
+  [Git & GitHub](#git--github).
+
+This applies to code as much as prose. A module assembled over many sessions has
+exactly the same property.
+
 ## Gates — Tier C: conditional triggers
 
 Tier C stays invisible until something fires it. Every trigger here has an
@@ -660,3 +682,19 @@ It gets **updated**, not written once and abandoned. Update it when:
 - Setup or run steps change
 - A new capability lands
 - A dependency or external service is added or removed
+- **The project's structure changes** — a section, module, or capability added or
+  removed
+
+### Whatever advertises a thing must match the thing
+
+A skill's description decides when it loads. A README's opening decides whether
+anyone reads further. An index decides what gets found at all.
+
+When one of these drifts out of date, **the failure is silent.** Nothing errors.
+The document simply stops being reached by the people or processes that needed
+it — and because there's no symptom, the drift can persist indefinitely and gets
+misread as the thing itself being unhelpful.
+
+So: **whenever the structure of a document changes, check whatever advertises
+it.** This is the one documentation defect that will not surface on its own, so
+it's the one that needs a trigger rather than good intentions.
