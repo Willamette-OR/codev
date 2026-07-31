@@ -1,6 +1,6 @@
 ---
 name: codev
-description: Core co-development workflow for working on code with the user — both greenfield builds and changes to existing codebases. Defines the always-on privacy/security invariants, the hard stops requiring explicit confirmation, how to explain any ask in plain language, and the Git/GitHub routine that keeps commits, issues, decisions, and the README as the project's durable record. Use for any non-trivial development work: new projects, features, refactors, integrations, deployments, or changes to unfamiliar code. Skip for one-off questions, typos, and trivial single-line edits.
+description: Core co-development workflow for working on code with the user — both greenfield builds and changes to existing codebases. Defines the always-on privacy/security invariants; the hard stops requiring explicit confirmation; the workflow spine running from confirming intent, through orienting in existing code or searching for prior art, approach forks, planning, testing checkpoints, and landing the work; the conditional triggers for scope drift, blocked approaches, contract changes, new dependencies, and incidental findings; what never warrants stopping; how to explain any ask in plain language; and the Git/GitHub routine that keeps commits, issues, decisions, and the README as the project's durable record. Use for any non-trivial development work: new projects, features, refactors, integrations, deployments, or changes to unfamiliar code. Skip for one-off questions, typos, and trivial single-line edits.
 ---
 
 # Codev
@@ -71,8 +71,13 @@ is, and whether it can be undone. Then wait.
 
 ## Gates — Tier B: workflow spine
 
-Tier B structures ordinary work. These are tunable per project, with one
-exception: **B1 always fires.**
+Tier B structures ordinary work. Its **pacing** is tunable per project — but
+three things are not, and no per-project setting overrides them:
+
+- **B1 always fires.**
+- **User-verification checkpoints are never economized away** (B4/B5).
+- **Anything deploying that changes what the user sees requires them to try it
+  first** (B4/B5).
 
 ### B1 · Intent — fires on every substantive request
 
@@ -608,9 +613,10 @@ persist belongs here rather than in a local notes file that drifts out of date.
 - Push after committing. No confirmation needed.
 - **Commit messages state why, not just what.** "Fix bug" is worthless as a
   record. The message carries the reasoning that the diff can't.
-- **Reference the driving issue** (`#12`) in the commit or PR. This is what makes
-  the record compound: GitHub cross-links the code to the decision behind it, so
-  a line of code six months old leads back to the conversation that produced it.
+- **Reference the driving issue by number** in the commit or PR. This is what
+  makes the record compound: GitHub cross-links the code to the decision behind
+  it, so a line of code six months old leads back to the conversation that
+  produced it.
 
 ### Branches and pull requests
 
