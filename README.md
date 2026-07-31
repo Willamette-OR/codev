@@ -3,10 +3,8 @@
 A Claude Code skill defining a working agreement for developing software
 together — covering both greenfield builds and changes to existing codebases.
 
-> **Status: under construction.** The invariants, Tier A gates, Tier B gates,
-> communication standard, and Git & GitHub routine are settled. Tier C
-> (conditional triggers) and the explicit non-gates list are still being
-> designed.
+> **Status: under construction.** Everything is settled except the explicit
+> non-gates list, which is still being designed.
 
 ## What it does
 
@@ -41,6 +39,7 @@ Two further principles run through it:
 | Invariants | Privacy and security constraints that are always in force |
 | Tier A gates | Hard stops — irreversible, destructive, or secret-touching actions |
 | Tier B gates | The workflow spine, from understanding intent through landing the work |
+| Tier C gates | Conditional triggers that stay invisible until something goes sideways |
 | Communicating at gates | The plain-language standard for every ask |
 | Git & GitHub | Commits, branches, PRs, issues, and the README as durable project record |
 
